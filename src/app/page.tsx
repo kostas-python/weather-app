@@ -10,6 +10,8 @@ import {
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import Team from './components/Team';
+import Projects from './components/Projects';
+
 
 // Define a type for the navigation items
 type NavigationItem = {
@@ -24,7 +26,7 @@ type NavigationItem = {
 const navigation: NavigationItem[] = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, count: '5', component: () => <div>Dashboard Content</div> },
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },
-  { name: 'Projects', href: '#', icon: FolderIcon, count: '12', component: () => <div>Projects Content</div> },
+  { name: 'Projects', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><Projects /></div> },
   { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div>Documents Content</div> },
   { name: 'Reports', href: '#', icon: ChartPieIcon, component: () => <div>Reports Content</div> },
@@ -50,7 +52,7 @@ export default function Home1() {
   return (
     <div className="flex h-screen">
       {/* Left Section */}
-      <div className="flex flex-col w-1/4 bg-gray-900">
+      <div className="flex flex-col w-1/4 bg-indigo-950 divide-y divide-double ">
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto">
            <img
@@ -58,6 +60,15 @@ export default function Home1() {
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
             />
+           {/* <svg viewBox="0 0 926 676" aria-hidden="true" className="absolute left-24 w-[57.875rem] transform-gpu blur-[118px]">
+        <path fill="url(#60c3c621-93e0-4a09-a0e6-4c228a0116d8)" fill-opacity=".4" d="m254.325 516.708-90.89 158.331L0 436.427l254.325 80.281 163.691-285.15c1.048 131.759 36.144 345.144 168.149 144.613C751.171 125.508 707.17-93.823 826.603 41.15c95.546 107.978 104.766 294.048 97.432 373.585L685.481 297.694l16.974 360.474-448.13-141.46Z" />
+        <defs>
+          <linearGradient id="60c3c621-93e0-4a09-a0e6-4c228a0116d8" x1="926.392" x2="-109.635" y1=".176" y2="321.024" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#776FFF" />
+            <stop offset="1" stop-color="#FF4694" />
+          </linearGradient>
+        </defs>
+      </svg>*/}
           <ul className="flex flex-col gap-y-5 mt-20">
             {navigation.map((item) => (
               <li key={item.name}>

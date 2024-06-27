@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@api/climacell-docs": "file:.api/apis/climacell-docs",
     "@heroicons/react": "^2.1.4",
     "axios": "^1.7.2",
     "chart.js": "^4.4.3",
