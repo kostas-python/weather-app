@@ -3,12 +3,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+
+
 interface WeatherData {
   startTime: string;
   values: {
     temperature: number;
   };
 }
+
+
 
 const WeatherForecastChart: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
@@ -38,24 +42,27 @@ const WeatherForecastChart: React.FC = () => {
       }
     };
 
+
     fetchWeatherData();
   }, []);
 
+
   return (
-    <div style={{ width: '100%', height: 400 }}>
+    <div className="w-full h-96 bg-pink-200"> {/* Pink background */}
       <ResponsiveContainer>
         <LineChart data={weatherData}>
-          <XAxis dataKey="startTime" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="startTime" className="text-green-500" /> {/* Green axis */}
+          <YAxis className="text-green-500" /> {/* Green axis */}
+          <CartesianGrid strokeDasharray="0 0" /> {/* Remove dot lines */}
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="values.temperature" stroke="#8884d8" dot={false}/>
+          <Line type="monotone" dataKey="values.temperature" stroke="#4CAF50" dot={false} /> {/* Green line */}
         </LineChart>
       </ResponsiveContainer>
     </div>
   );
 };
+
 
 export default WeatherForecastChart;
 
