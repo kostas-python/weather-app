@@ -94,7 +94,8 @@ export default Projects; */}
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import WeatherChart from './components/WeatherChart';
+import WeatherChart from './WeatherChart';
+
 
 const Projects: React.FC = () => {
   const [weather, setWeather] = useState<any>(null);
@@ -104,7 +105,7 @@ const Projects: React.FC = () => {
   const location = 'new york';
   const units = 'metric';
   const timesteps = '1d';
-
+  
   useEffect(() => {
     const fetchWeather = async () => {
       const params = {
