@@ -1,169 +1,62 @@
-{/*import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
-const Projects: React.FC = () => {
-  const [weather, setWeather] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const apikey = '2xPYMPgFbcLS5Y2QLr9VOSav8TZbtN5N';
-  const location = 'new york';
-  const units = 'metric';
-  const timesteps = '1d';
-
-  useEffect(() => {
-    const fetchWeather = async () => {
-      const params = {
-        apikey,
-        location,
-        units,
-        timesteps,
-      };
-      const options = { headers: { accept: 'application/json' } };
-      try {
-        const response = await axios.get('https://api.tomorrow.io/v4/weather/forecast', { params, ...options });
-        setWeather(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching weather data');
-        setLoading(false);
-      }
-    };
-    fetchWeather();
-  }, []);
-
-  const convertRawDataIntoTempPlots = (rawData: any[]) => {
-    const maxTemperatures: any[] = [];
-    const minTemperatures: any[] = [];
-    const avgTemperatures: any[] = [];
-    const timeStamps: any[] = [];
-    
-    rawData.forEach((d: { time: any; values: { temperatureMax: any; temperatureMin: any; temperatureAvg: any; }; }) => {
-      timeStamps.push(d.time);
-      maxTemperatures.push(d.values.temperatureMax);
-      minTemperatures.push(d.values.temperatureMin);
-      avgTemperatures.push(d.values.temperatureAvg);
-    });
-
-    return {
-      timeStamps,
-      maxTemperatures,
-      minTemperatures,
-      avgTemperatures,
-    };
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  const temperaturePlots = weather ? convertRawDataIntoTempPlots(weather.timelines.daily) : null;
-
-  return (
-    <div>
-      <h1>Projects</h1>
-      {temperaturePlots && (
-        <div>
-          <h2>Temperature Trends in New York Over the Next 5 Days</h2>
-          <div>
-            <strong>Dates: </strong>
-            {temperaturePlots.timeStamps.join(', ')}
-          </div>
-          <div>
-            <strong>Max Temperatures: </strong>
-            {temperaturePlots.maxTemperatures.join(', ')}
-          </div>
-          <div>
-            <strong>Min Temperatures: </strong>
-            {temperaturePlots.minTemperatures.join(', ')}
-          </div>
-          <div>
-            <strong>Avg Temperatures: </strong>
-            {temperaturePlots.avgTemperatures.join(', ')}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Projects; */}
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import WeatherChart from './WeatherChart';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
+interface WeatherData {
+  startTime: string;
+  values: {
+    temperature: number;
+  };
+}
 
-const Projects: React.FC = () => {
-  const [weather, setWeather] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const apikey = '2xPYMPgFbcLS5Y2QLr9VOSav8TZbtN5N';
-  const location = 'new york';
-  const units = 'metric';
-  const timesteps = '1d';
-  
+const WeatherForecastChart: React.FC = () => {
+  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
+
   useEffect(() => {
-    const fetchWeather = async () => {
-      const params = {
-        apikey,
-        location,
-        units,
-        timesteps,
-      };
-      const options = { headers: { accept: 'application/json' } };
+    const fetchWeatherData = async () => {
       try {
-        const response = await axios.get('https://api.tomorrow.io/v4/weather/forecast', { params, ...options });
-        setWeather(response.data);
-        setLoading(false);
-      } catch (err) {
-        setError('Error fetching weather data');
-        setLoading(false);
+        const response = await axios.get<{
+          data: {
+            timelines: {
+              intervals: WeatherData[];
+            }[];
+          };
+        }>('https://api.tomorrow.io/v4/timelines', {
+          params: {
+            location: '40.730610,-73.935242',
+            fields: ['temperature'],
+            units: 'metric',
+            timesteps: ['1h'],
+            apikey: '2xPYMPgFbcLS5Y2QLr9VOSav8TZbtN5N',
+          },
+        });
+
+        setWeatherData(response.data.data.timelines[0].intervals);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
       }
     };
-    fetchWeather();
+
+    fetchWeatherData();
   }, []);
 
-  const convertRawDataIntoTempPlots = (rawData: any[]) => {
-    const maxTemperatures: number[] = [];
-    const minTemperatures: number[] = [];
-    const avgTemperatures: number[] = [];
-    const timeStamps: string[] = [];
-    
-    rawData.forEach((d) => {
-      timeStamps.push(d.time);
-      maxTemperatures.push(d.values.temperatureMax);
-      minTemperatures.push(d.values.temperatureMin);
-      avgTemperatures.push(d.values.temperatureAvg);
-    });
-
-    return {
-      timeStamps,
-      maxTemperatures,
-      minTemperatures,
-      avgTemperatures,
-    };
-  };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  const temperaturePlots = weather ? convertRawDataIntoTempPlots(weather.timelines.daily) : null;
-
   return (
-    <div>
-      <h1>Projects</h1>
-      {temperaturePlots && <WeatherChart data={temperaturePlots} />}
+    <div style={{ width: '100%', height: 400 }}>
+      <ResponsiveContainer>
+        <LineChart data={weatherData}>
+          <XAxis dataKey="startTime" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="values.temperature" stroke="#8884d8" dot={false}/>
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 };
 
-export default Projects;
+export default WeatherForecastChart;
+
+//  data={weatherData}
