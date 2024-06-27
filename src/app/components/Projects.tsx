@@ -28,7 +28,7 @@ const WeatherForecastChart: React.FC = () => {
           };
         }>('https://api.tomorrow.io/v4/timelines', {
           params: {
-            location: '40.730610,-73.935242',
+            location: 'london',
             fields: ['temperature'],
             units: 'metric',
             timesteps: ['1h'],
@@ -48,12 +48,12 @@ const WeatherForecastChart: React.FC = () => {
 
 
   return (
-    <div className="w-full h-96 bg-pink-200"> {/* Pink background */}
+    <div className="w-7/12 h-96 bg-pink-200 "> {/* Pink background */}
       <ResponsiveContainer>
         <LineChart data={weatherData}>
-          <XAxis dataKey="startTime" className="text-green-500" /> {/* Green axis */}
-          <YAxis className="text-green-500" /> {/* Green axis */}
-          <CartesianGrid strokeDasharray="0 0" /> {/* Remove dot lines */}
+          <XAxis dataKey="startTime" className="text-green-500" /> 
+          <YAxis className="text-green-500" /> 
+          <CartesianGrid strokeDasharray="0 0" /> 
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="values.temperature" stroke="#4CAF50" dot={false} /> {/* Green line */}

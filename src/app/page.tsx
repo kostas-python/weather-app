@@ -11,6 +11,7 @@ import {
 import React from 'react';
 import Team from './components/Team';
 import Projects from './components/Projects';
+import RealTimeWeather from './components/RealTime';
 
 
 // Define a type for the navigation items
@@ -28,7 +29,7 @@ const navigation: NavigationItem[] = [
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },
   { name: 'Projects', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><Projects /></div> },
   { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div>Documents Content</div> },
+  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div><RealTimeWeather /></div> },
   { name: 'Reports', href: '#', icon: ChartPieIcon, component: () => <div>Reports Content</div> },
 ];
 
