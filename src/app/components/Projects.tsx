@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area } from 'recharts';
-import 'flowbite'
 import { format } from 'date-fns';
 
 
@@ -54,18 +53,18 @@ const Projects: React.FC = () => {
  // chart //
 
  return (
-  <div className="max-w-sm w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-    <div className="flex justify-between">
-      <div>
-        <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Weather Forecast</h5>
-        <p className="text-base font-normal text-gray-500 dark:text-gray-400">Temperature for the next few days</p>
+  <div className="max-w-4xl max-h-full w-full border-4 border-teal-800 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+    <div className="flex justify-center">
+      <div className="text-center">
+        <h5 className="leading-none text-3xl font-bold  text-gray-900 dark:text-white pb-2">Weather Forecast</h5>
+        <p className="text-base font-normal text-gray-500 dark:text-gray-400">London temperature for the next few days</p>
       </div>
     </div>
     <div id="weather-chart">
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={600}>
         <LineChart data={weatherData} className="leading-10">
           <XAxis dataKey="startTime" tickFormatter={(value) => format(new Date(value), 'MMM dd')}/>
-          <YAxis domain={[20, 28]} />
+          <YAxis domain={[15, 28]} />
           <CartesianGrid strokeDasharray="3 3" />
           <Tooltip />
           <Legend />
@@ -74,7 +73,7 @@ const Projects: React.FC = () => {
               dataKey="values.temperature"
               stroke="#8884d8"
               fill="#8884d8"
-              fillOpacity={0.3}
+              fillOpacity={0.2}
             />
           <Line type="monotone" dataKey="values.temperature" stroke="#8884d8" strokeWidth={4}/>
         </LineChart>

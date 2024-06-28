@@ -16,10 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.4.1/flowbite.min.css" rel="stylesheet" />
-      <body className={inter.className}>{children}
-      <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+    <html lang="en"><body className={inter.className}>{children}
       </body>
     </html>
   );

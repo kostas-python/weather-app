@@ -12,7 +12,6 @@ import React from 'react';
 import Team from './components/Team';
 import Projects from './components/Projects';
 import RealTimeWeather from './components/RealTime';
-import 'flowbite'
 import './globals.css';
 
 
