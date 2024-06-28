@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.gradient-fill {
+    fill: url(#gradient-fill);
+  }
+  
+  .gradient-fill-defs {
+    stop-color: #1C64F2;
+    stop-opacity: 0.55;
+  }
+  
+  .gradient-fill-defs-to {
+    stop-color: #1C64F2;
+    stop-opacity: 0;
+  }
+  
