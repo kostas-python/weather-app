@@ -53,7 +53,7 @@ const WeatherTemp: React.FC = () => {
  // chart //
 
  return (
-  <div className="max-w-4xl max-h-full w-full border-4 border-teal-800  rounded-lg shadow dark:bg-gray-800 p-4 md:p-6" style={{ backgroundColor: '#f0f0f0' }}>
+  <div className="max-w-4xl max-h-full w-full border-4 border-teal-800  rounded-lg shadow dark:bg-gray-800 p-4 mt-20 md:p-6" style={{ backgroundColor: '#f0f0f0' }}>
     <div className="flex justify-center ">
       <div className="text-center">
         <h5 className="leading-none text-3xl font-bold text-teal-500 pb-2" >Weather Forecast</h5>
