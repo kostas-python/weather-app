@@ -10,13 +10,14 @@ import {
 } from '@heroicons/react/24/outline';
 import React from 'react';
 import Team from './admin/components/Team';
-import Projects from './admin/components/Projects';
+import Projects from './admin/components/WeatherTemp';
 import RealTimeWeather from './admin/components/RealTime';
 import { OrdersByDayChart } from './admin/components/charts/OrdersByDayChart';
 import './globals.css';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Calendar } from '@/components/ui/calendar';
 import { UsersByDayChart } from './admin/components/charts/UsersByDayChart';
+import WeatherTemp from './admin/components/WeatherTemp';
 
 // Define a type for the navigation items
 type NavigationItem = {
@@ -36,7 +37,7 @@ const navigation: NavigationItem[] = [
   </div>
  },
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },
-  { name: 'Weather', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><Projects /></div> },
+  { name: 'Weather', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><WeatherTemp /></div> },
   { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div><RealTimeWeather /></div> },
   { name: 'Reports', href: '#', icon: ChartPieIcon, component: () => <div>Reports Content</div> },

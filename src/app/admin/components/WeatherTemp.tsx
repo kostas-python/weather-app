@@ -16,7 +16,7 @@ interface WeatherData {
 
 
 
-const Projects: React.FC = () => {
+const WeatherTemp: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
   
 
@@ -53,11 +53,11 @@ const Projects: React.FC = () => {
  // chart //
 
  return (
-  <div className="max-w-4xl max-h-full w-full border-4 border-teal-800 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-    <div className="flex justify-center">
+  <div className="max-w-4xl max-h-full w-full border-4 border-teal-800  rounded-lg shadow dark:bg-gray-800 p-4 md:p-6" style={{ backgroundColor: '#f0f0f0' }}>
+    <div className="flex justify-center ">
       <div className="text-center">
-        <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Weather Forecast</h5>
-        <p className="text-base font-normal text-gray-500 dark:text-gray-400">London temperature for the next few days</p>
+        <h5 className="leading-none text-3xl font-bold text-teal-500 pb-2" >Weather Forecast</h5>
+        <p className="text-base font-normal text-gray-9500 dark:text-gray-400">London temperature for the next few days</p>
       </div>
     </div>
     <div id="weather-chart">
@@ -75,7 +75,7 @@ const Projects: React.FC = () => {
               fill="#8884d8"
               fillOpacity={0.2}
             />
-          <Line type="monotone" dataKey="values.temperature" stroke="#8884d8" strokeWidth={4}/>
+          <Line type="monotone" dataKey="values.temperature" stroke="#00cc99" strokeWidth={4}/>
         </LineChart>
       </ResponsiveContainer>
     </div>
@@ -83,5 +83,5 @@ const Projects: React.FC = () => {
 );
 };
 
-export default Projects;
+export default WeatherTemp;
 //  data={weatherData}
