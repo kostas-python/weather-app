@@ -16,7 +16,7 @@ import { OrdersByDayChart } from './admin/components/charts/OrdersByDayChart';
 import './globals.css';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Calendar } from '@/components/ui/calendar';
-
+import { UsersByDayChart } from './admin/components/charts/UsersByDayChart';
 
 // Define a type for the navigation items
 type NavigationItem = {
@@ -29,7 +29,12 @@ type NavigationItem = {
 
 // Define your navigation and corresponding component mappings
 const navigation: NavigationItem[] = [
-  { name: 'Sales', href: '', icon: HomeIcon, count: '5', component: () => <div><OrdersByDayChart /></div>},
+  { name: 'Sales', href: '', icon: HomeIcon, count: '5', component: () => 
+  <div>
+    <OrdersByDayChart />
+    <UsersByDayChart />
+  </div>
+ },
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },
   { name: 'Weather', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><Projects /></div> },
   { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
@@ -38,9 +43,9 @@ const navigation: NavigationItem[] = [
 ];
 
 const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H' },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T' },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W' },
+  { id: 1, name: 'Option1', href: '#', initial: 'H' },
+  { id: 2, name: 'Option2', href: '#', initial: 'T' },
+  { id: 3, name: 'Option3', href: '#', initial: 'W' },
 ];
 
 function classNames(...classes: string[]) {
@@ -122,15 +127,15 @@ export default function Home1() {
             <li className="-mx-6 mt-auto">
                   <a
                     href="#"
-                    className="flex mb-20 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
+                    className="flex mb-12 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
                   >
                     <img
-                      className="h-8 w-8 rounded-full bg-gray-800"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      className="h-10 w-10 rounded-full bg-gray-800"
+                      src="avatar.jpeg"
                       alt=""
                     />
                     <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
+                    <span aria-hidden="true">Kostas Diam</span>
                   </a>
                 </li>
           </ul>
