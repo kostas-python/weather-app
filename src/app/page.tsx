@@ -12,7 +12,9 @@ import React from 'react';
 import Team from './components/Team';
 import Projects from './components/Projects';
 import RealTimeWeather from './components/RealTime';
+import { OrdersByDayChart } from './components/Dashboard';
 import './globals.css';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 
 // Define a type for the navigation items
@@ -26,7 +28,24 @@ type NavigationItem = {
 
 // Define your navigation and corresponding component mappings
 const navigation: NavigationItem[] = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, count: '5', component: () => <div>Dashboard Content</div> },
+  { name: 'Dashboard', href: '/components/dashboard', icon: HomeIcon, count: '5', component: () =>
+  <>
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols3 gap-4 mt-8">
+  </div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-black text-center">Total Sales</CardTitle>
+        <CardDescription className="text-center">October</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <OrdersByDayChart />
+      </CardContent>
+    </Card>
+    </div>
+  </>
+ },
+
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },
   { name: 'Projects', href: '/components/projects', icon: FolderIcon, count: '12', component: () => <div><Projects /></div> },
   { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
@@ -134,7 +153,7 @@ export default function Home1() {
       </div>
 
       {/* Right Section */}
-      <div className="flex-1 bg-gray-800 p-6">
+      <div className="flex-1 bg-white p-6">
         {/* Render the selected component */}
         {React.createElement(selectedNavItem.component)}
       </div>

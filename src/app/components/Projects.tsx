@@ -56,13 +56,13 @@ const Projects: React.FC = () => {
   <div className="max-w-4xl max-h-full w-full border-4 border-teal-800 bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
     <div className="flex justify-center">
       <div className="text-center">
-        <h5 className="leading-none text-3xl font-bold  text-gray-900 dark:text-white pb-2">Weather Forecast</h5>
+        <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Weather Forecast</h5>
         <p className="text-base font-normal text-gray-500 dark:text-gray-400">London temperature for the next few days</p>
       </div>
     </div>
     <div id="weather-chart">
       <ResponsiveContainer width="100%" height={600}>
-        <LineChart data={weatherData} className="leading-10">
+        <LineChart data={weatherData} className="leading-10 ">
           <XAxis dataKey="startTime" tickFormatter={(value) => format(new Date(value), 'MMM dd')}/>
           <YAxis domain={[15, 28]} />
           <CartesianGrid strokeDasharray="3 3" />
