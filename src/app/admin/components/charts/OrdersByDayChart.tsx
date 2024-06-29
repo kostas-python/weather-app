@@ -5,11 +5,13 @@ import React from 'react';
 import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
 const data = [
-  { value: 12, date: '1-10' },
-  { value: 20, date: '2-10' },
-  { value: 15, date: '3-10' },
-  { value: 2, date:  '4-10' },
-  { value: 8, date:  '5-10' },
+  { value: 12, returns: 2, date: '1-10' },
+  { value: 20, returns: 5,date: '2-10' },
+  { value: 15, returns: 3,date: '3-10' },
+  { value: 2,  returns: 7,date:  '4-10' },
+  { value: 8,  returns: 1,date:  '5-10' },
+  { value: 18, returns: 5,date:  '6-10' },
+  { value: 15, returns: 2,date:  '7-10' },
 ];
 
 const formatCurrency = (tick: number | bigint) => {
@@ -43,6 +45,7 @@ export function OrdersByDayChart() {
                   <Tooltip />
                   <Legend />
                   <Line type="monotone" dataKey="value" stroke="#8884d8" name="Total Sales" />
+                  <Line type="monotone" dataKey="returns" stroke="#ff4d4d" name="Returns" />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>

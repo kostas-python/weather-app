@@ -18,6 +18,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Calendar } from '@/components/ui/calendar';
 import { UsersByDayChart } from './admin/components/charts/UsersByDayChart';
 import WeatherTemp from './admin/components/WeatherTemp';
+import { IncomePieChart } from './admin/components/charts/IncomePieChart';
 
 // Define a type for the navigation items
 type NavigationItem = {
@@ -34,6 +35,8 @@ const navigation: NavigationItem[] = [
   <div>
     <OrdersByDayChart />
     <UsersByDayChart />
+    <IncomePieChart />
+
   </div>
  },
   { name: 'Team', href: '/components/team', icon: UsersIcon, component: () => <div><Team /></div> },

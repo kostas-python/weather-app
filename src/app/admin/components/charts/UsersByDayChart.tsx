@@ -8,13 +8,13 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 // number of users //
 
 const data = [
-  { value: 30, date: '2024-01-01' },
-  { value: 45, date: '2024-01-02' },
-  { value: 28, date: '2024-01-03' },
-  { value: 50, date: '2024-01-04' },
-  { value: 75, date: '2024-01-05' },
-  { value: 33, date: '2024-01-06' },
-  { value: 60, date: '2024-01-07' },
+  { value: 30, date: '01-10' },
+  { value: 45, date: '02-10' },
+  { value: 28, date: '03-10' },
+  { value: 50, date: '04-10' },
+  { value: 75, date: '05-10' },
+  { value: 33, date: '06-10' },
+  { value: 60, date: '07-10' },
 ];
 
 // bar colors //
