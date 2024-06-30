@@ -17,11 +17,16 @@ import { UsersByDayChart } from './admin/components/charts/UsersByDayChart';
 import WeatherTemp from './admin/components/WeatherTemp';
 import { IncomePieChart } from './admin/components/charts/IncomePieChart';
 import WeatherWidget from './admin/components/WeatherWidget';
-import SpotifySearch from './admin/components/Spotify';
 import Image from 'next/image';
+import Dashboard from './admin/components/spotify/Dashboard';
+import SpotifyWebPlayer from 'react-spotify-web-playback';
+import Player from './admin/components/spotify/Player';
+import Login from './admin/components/spotify/Login';
+import SpotifySearch from './admin/components/spotify/Spotify';
 
 
 // Define a type for the navigation items
+
 type NavigationItem = {
   name: string;
   href: string;
@@ -31,7 +36,8 @@ type NavigationItem = {
 };
 
 
-// Define your navigation and corresponding component mappings
+// Define  navigation and corresponding component mappings
+
 const navigation: NavigationItem[] = [
   { name: 'Sales', href: '', icon: HomeIcon, count: '5', component: () => 
   <div>
@@ -48,7 +54,14 @@ const navigation: NavigationItem[] = [
     <WeatherTemp />
     </div> 
   },
-  { name: 'Spotify', href: '/components/spotify', icon: UsersIcon, component: () => <div><SpotifySearch accessToken={'BQDBKJ5eo5jxbtpWjVOj7ryS84khybFpP_lTqzV7uV-T_m0cTfwvdn5BnBSKPxKgEb11'} /></div> },
+  { name: 'Spotify', href: '/components/spotify', icon: UsersIcon, component: () => <div>
+  <SpotifySearch accessToken={''} />
+  
+  <SpotifyWebPlayer token={''} uris={''} />
+  
+  <Player accessToken={undefined} trackUri={undefined} />
+  
+  </div> },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div><RealTimeWeather /></div> },
   
 ];
@@ -58,6 +71,13 @@ const teams = [
   { id: 2, name: 'Option2', href: '#', initial: 'T' },
   { id: 3, name: 'Option3', href: '#', initial: 'W' },
 ];
+
+const code = new URLSearchParams(window.location.search).get("code")
+
+function App() {
+  return code ? <Dashboard code={code} /> : <Login />
+}
+
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
