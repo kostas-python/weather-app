@@ -18,11 +18,12 @@ import WeatherTemp from './admin/components/WeatherTemp';
 import { IncomePieChart } from './admin/components/charts/IncomePieChart';
 import WeatherWidget from './admin/components/WeatherWidget';
 import Image from 'next/image';
-import Dashboard from './admin/components/spotify/Dashboard';
+
 import SpotifyWebPlayer from 'react-spotify-web-playback';
 import Player from './admin/components/spotify/Player';
 import Login from './admin/components/spotify/Login';
 import SpotifySearch from './admin/components/spotify/Spotify';
+import Dashboard from './admin/components/spotify/Dashboard';
 
 
 // Define a type for the navigation items
@@ -56,6 +57,7 @@ const navigation: NavigationItem[] = [
   },
   { name: 'Spotify', href: '/components/spotify', icon: UsersIcon, component: () => <div>
   <SpotifySearch accessToken={''} />
+  <Login />
   
   <SpotifyWebPlayer token={''} uris={''} />
   
@@ -73,10 +75,6 @@ const teams = [
 ];
 
 const code = new URLSearchParams(window.location.search).get("code")
-
-function App() {
-  return code ? <Dashboard code={code} /> : <Login />
-}
 
 
 function classNames(...classes: string[]) {

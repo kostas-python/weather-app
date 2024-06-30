@@ -1,5 +1,5 @@
 
-require("dotenv").config()
+require("dotenv").config({ path: ".env.local" })
 const express = require("express")
 const cors = require("cors")
 const bodyParser = require("body-parser")
@@ -68,4 +68,4 @@ app.get("/lyrics", async (req, res) => {
   res.json({ lyrics })
 })
 
-app.listen(3001)
+app.listen(3000)

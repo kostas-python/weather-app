@@ -10,7 +10,8 @@ import axios from "axios"
 
 
 const spotifyApi = new SpotifyWebApi({
-  clientId: "d0dc4b3e1bee4a5595a54d59869d2a10",
+  clientId: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET
 })
 
 
@@ -33,7 +34,7 @@ export default function Dashboard({ code }) {
     if (!playingTrack) return
 
     axios
-      .get("http://localhost:3000/lyrics", {
+      .get("http://localhost:3000/admin/components/spotify/lyrics", {
         params: {
           track: playingTrack.title,
           artist: playingTrack.artist,
