@@ -1,26 +1,25 @@
 'use client' 
+
 import { useState } from 'react';
 import {
-  CalendarIcon,
-  ChartPieIcon,
   DocumentDuplicateIcon,
   FolderIcon,
   HomeIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline';
 import React from 'react';
-import Team from './admin/components/Spotify';
-import Projects from './admin/components/WeatherTemp';
+
 import RealTimeWeather from './admin/components/RealTime';
 import { OrdersByDayChart } from './admin/components/charts/OrdersByDayChart';
 import './globals.css';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Calendar } from '@/components/ui/calendar';
 import { UsersByDayChart } from './admin/components/charts/UsersByDayChart';
 import WeatherTemp from './admin/components/WeatherTemp';
 import { IncomePieChart } from './admin/components/charts/IncomePieChart';
 import WeatherWidget from './admin/components/WeatherWidget';
 import SpotifySearch from './admin/components/Spotify';
+import Image from 'next/image';
+
 
 // Define a type for the navigation items
 type NavigationItem = {
@@ -30,6 +29,7 @@ type NavigationItem = {
   count?: string;
   component: React.ComponentType;
 };
+
 
 // Define your navigation and corresponding component mappings
 const navigation: NavigationItem[] = [
@@ -48,11 +48,9 @@ const navigation: NavigationItem[] = [
     <WeatherTemp />
     </div> 
   },
-
   { name: 'Spotify', href: '/components/spotify', icon: UsersIcon, component: () => <div><SpotifySearch accessToken={'BQDBKJ5eo5jxbtpWjVOj7ryS84khybFpP_lTqzV7uV-T_m0cTfwvdn5BnBSKPxKgEb11'} /></div> },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, count: '20+', component: () => <div>Calendar Content</div> },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div><RealTimeWeather /></div> },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, component: () => <div>Reports Content</div> },
+  
 ];
 
 const teams = [
@@ -78,7 +76,7 @@ export default function Home1() {
       <div className="flex flex-col w-1/4 bg-indigo-950 divide-y divide-double ">
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto">
-           <img
+           <Image
               className="h-14 w-auto"
               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
               alt="Your Company"
@@ -142,7 +140,7 @@ export default function Home1() {
                     href="#"
                     className="flex mb-12 items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
                   >
-                    <img
+                    <Image
                       className="h-10 w-10 rounded-full bg-gray-800"
                       src="avatar.jpeg"
                       alt=""
