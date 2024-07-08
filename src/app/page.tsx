@@ -24,7 +24,7 @@ import Player from './admin/components/spotify/Player';
 import Login from './admin/components/spotify/Login';
 import SpotifySearch from './admin/components/spotify/Spotify';
 import Dashboard from './admin/components/spotify/Dashboard';
-import { BarChart1 } from './admin/components/data/page';
+import { BarChart1 } from './admin/components/data/Barchart1';
 
 
 // Define a type for the navigation items

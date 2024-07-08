@@ -5,6 +5,8 @@ import { CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, BarChart, Ba
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import Papa from 'papaparse';
 
+
+
 const colors = [
   '#8884d8', // Color for first bar
   '#82ca9d', // Color for second bar
@@ -15,42 +17,63 @@ const colors = [
   '#d0ed57', // Color for seventh bar
 ];
 
+
 function formatNumber(value: number): string {
   return value.toString();
 }
+
 
 interface AggregatedData {
   date: string;
   value: number;
 }
 
-type DataType = 'Nationality' | 'Age' | 'Gender' | 'Ethnicity' ;
+ // Data types from CSV //
+
+type DataType = 'Nationality' | 'Total Suspects' | 'Age' | 'Gender' | 'Ethnicity' | 'District of occurrence' | 'Adjacent to School' | 'Assigned Division' | 'Assigned Bureau' | 'Event Date/Time';
+
 
 function aggregateData(data: any[], dataType: DataType): AggregatedData[] {
   const aggregated: Record<string, number> = {};
 
+  
+  // Data types on chart dropdown menu //
+
   data.forEach(item => {
     let key;
     switch (dataType) {
+      case 'Total Suspects':
+        key = item['Total Suspects'];
+        break;
       case 'Age':
         key = item['Age'];
         break;
       case 'Gender':
         key = item['Gender'];
         break;
-      case 'Age':
-        key = item['Age'];
-        break;
-        case 'Ethnicity':
+      case 'Ethnicity':
         key = item['Ethnicity'];
         break;
       case 'Nationality':
         key = item['Nationality'];
         break;
+      case 'District of occurrence':
+        key = item['District of occurrence'];
+        break;
+      case 'Adjacent to School':
+        key = item['Adjacent to School'];
+        break;
+      case 'Assigned Division':
+        key = item['Assigned Division'];
+        break;
+      case 'Assigned Bureau':
+        key = item['Assigned Bureau'];
+        break;
       default:
         key = new Date(item['Event Date/Time']).toISOString().split('T')[0]; // Extract the date part
         break;
     }
+
 
     if (!aggregated[key]) {
       aggregated[key] = 0;
@@ -58,16 +81,20 @@ function aggregateData(data: any[], dataType: DataType): AggregatedData[] {
     aggregated[key] += 1;
   });
 
+
   return Object.keys(aggregated).map(key => ({
     date: key,
     value: aggregated[key],
   }));
 }
 
+
 export function BarChart1() {
   const [data, setData] = useState<AggregatedData[]>([]);
-  const [dataType, setDataType] = useState<DataType>('Nationality');
+  const [dataType, setDataType] = useState<DataType>('Total Suspects');
   const [activeIndex, setActiveIndex] = useState<number | null>(-1);
+
+  // Fetch data from CSV //
 
   useEffect(() => {
     fetch('/Police_Arrests.csv')
@@ -87,14 +114,17 @@ export function BarChart1() {
       });
   }, [dataType]); // Refetch data when dataType changes
 
+
   const handleMouseEnter = (data: any, index: number) => {
     setActiveIndex(index);
   };
+
 
   const handleMouseLeave = () => {
     setActiveIndex(null);
   };
 
+  
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
@@ -115,6 +145,11 @@ export function BarChart1() {
                 <option value="Age">Age</option>
                 <option value="Gender">Gender</option>
                 <option value="Nationality">Nationality</option>
+                <option value="Ethnicity">Ethnicity</option>
+                <option value="District of occurrence">District of occurrence</option>
+                <option value="Adjacent to School">Adjacent to School</option>
+                <option value="Assigned Division">Assigned Division</option>
+                <option value="Assigned Bureau">Assigned Bureau</option>
               </select>
             </CardHeader>
             <CardContent>
