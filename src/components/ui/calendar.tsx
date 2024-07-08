@@ -1,20 +1,50 @@
-"use client"
 
-import * as React from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DayPicker } from "react-day-picker"
 
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import * as React from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { DayPicker } from "react-day-picker";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
+
+// Define the props for the Calendar component, inheriting from DayPicker props
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+
+
+// Define the Calendar component
 function Calendar({
   className,
-  classNames,
+  classNames = {},
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+
+  // Function to determine if a given date is today
+  const isToday = (date: Date) => {
+    const today = new Date();
+    return date.getDate() === today.getDate() &&
+           date.getMonth() === today.getMonth() &&
+           date.getFullYear() === today.getFullYear();
+  };
+
+
+  // Custom rendering function for day cells
+  const renderDay = (date: Date, modifiers: any) => {
+    const dayClassNames = cn(
+      buttonVariants({ variant: "ghost" }),
+      "h-9 w-9 p-0 font-normal aria-selected:opacity-100",
+      
+    );
+
+    return (
+      <div className={dayClassNames}>
+        {date.getDate()}
+      </div>
+    );
+  };
+
+  
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -44,7 +74,7 @@ function Calendar({
         day_range_end: "day-range-end",
         day_selected:
           "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        day_today: "bg-accent text-accent-foreground",
+        day_today: "bg-white border-2 border-white rounded-full text-black",
         day_outside:
           "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",
         day_disabled: "text-muted-foreground opacity-50",
@@ -57,10 +87,15 @@ function Calendar({
         IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
         IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
       }}
-      {...props}
+      modifiers={{
+        today: (date: Date) => isToday(date), // Specify today's date as a modifier
+      }}
+      
     />
-  )
+  );
 }
-Calendar.displayName = "Calendar"
 
-export { Calendar }
+Calendar.displayName = "Calendar";
+
+export { Calendar };
+

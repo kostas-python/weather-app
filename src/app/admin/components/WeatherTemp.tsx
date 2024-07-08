@@ -57,7 +57,7 @@ const WeatherTemp: React.FC = () => {
     <div className="flex justify-center ">
       <div className="text-center">
         <h5 className="leading-none text-3xl font-bold text-teal-500 pb-2" >Weather Forecast</h5>
-        <p className="text-base font-normal text-gray-9500 dark:text-gray-400">London temperature for the next few days</p>
+        <p className="text-base font-normal text-gray-9500 dark:text-gray-400">London temperature for the next 5 days</p>
       </div>
     </div>
     <div id="weather-chart">

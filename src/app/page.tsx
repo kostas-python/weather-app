@@ -65,7 +65,7 @@ const navigation: NavigationItem[] = [
   <Player accessToken={undefined} trackUri={undefined} />
   
   </div> },
-  { name: 'General data', href: '/components/data', icon: DocumentDuplicateIcon, component: () => 
+  { name: 'Fetch data', href: '/components/data', icon: DocumentDuplicateIcon, component: () => 
   <div><BarChart1 /></div> },
   
 ];

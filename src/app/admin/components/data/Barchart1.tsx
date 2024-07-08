@@ -91,7 +91,7 @@ function aggregateData(data: any[], dataType: DataType): AggregatedData[] {
 
 export function BarChart1() {
   const [data, setData] = useState<AggregatedData[]>([]);
-  const [dataType, setDataType] = useState<DataType>('Total Suspects');
+  const [dataType, setDataType] = useState<DataType>('Age');
   const [activeIndex, setActiveIndex] = useState<number | null>(-1);
 
   // Fetch data from CSV //
@@ -130,7 +130,7 @@ export function BarChart1() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         {/* Content inside the grid */}
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-">
         <div>
           <Card>
             <CardHeader>
