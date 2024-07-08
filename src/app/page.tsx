@@ -24,6 +24,7 @@ import Player from './admin/components/spotify/Player';
 import Login from './admin/components/spotify/Login';
 import SpotifySearch from './admin/components/spotify/Spotify';
 import Dashboard from './admin/components/spotify/Dashboard';
+import { BarChart1 } from './admin/components/data/page';
 
 
 // Define a type for the navigation items
@@ -64,7 +65,8 @@ const navigation: NavigationItem[] = [
   <Player accessToken={undefined} trackUri={undefined} />
   
   </div> },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, component: () => <div><RealTimeWeather /></div> },
+  { name: 'General data', href: '/components/data', icon: DocumentDuplicateIcon, component: () => 
+  <div><BarChart1 /></div> },
   
 ];
 
@@ -74,7 +76,6 @@ const teams = [
   { id: 3, name: 'Option3', href: '#', initial: 'W' },
 ];
 
-const code = new URLSearchParams(window.location.search).get("code")
 
 
 function classNames(...classes: string[]) {
